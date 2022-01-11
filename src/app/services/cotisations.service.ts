@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Membres} from '../model/membres.model';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../environments/environment.prod';
 import {Cotisations} from '../model/cotisations.model';
 
 @Injectable({
@@ -10,7 +10,7 @@ import {Cotisations} from '../model/cotisations.model';
 })
 export class CotisationsService {
 
-  public host= environment.host;
+  public host= environment.baseURL;
 
   constructor(private http: HttpClient) { }
 

@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Membres} from '../model/membres.model';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
-import {environment} from '../../environments/environment';
 import {host} from '@angular-devkit/build-angular/src/test-utils';
 import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable({providedIn: 'root' } )
 export class MembresService {
-  public host= environment.host;
+  public host= environment.baseURL;
   constructor(private http: HttpClient) {
   }
 

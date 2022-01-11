@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'listMembres', component: ListMembresComponent},
   {path: 'editMembre/:id', component: MembreEditComponent},
   {path: 'addMembre',component: MembreAddComponent},
-  {path:'', redirectTo:'theMembers', pathMatch:'full'}
+  {path:'', redirectTo:'home', pathMatch:'full'}
 
   ];
 
