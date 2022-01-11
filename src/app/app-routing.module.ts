@@ -8,12 +8,17 @@ import {CotisationComponent} from './components/cotisation/cotisation.component'
 import {CotisationByMembreComponent} from './components/cotisation-by-membre/cotisation-by-membre.component';
 import {MembreDetailsComponent} from './components/membre-details/membre-details.component';
 import {CotisationAddComponent} from './components/cotisation-add/cotisation-add.component';
+import {HomeComponent} from './components/home/home.component';
+import {AboutUsComponent} from './components/about-us/about-us.component';
+import {ActuComponent} from './components/actu/actu.component';
 
 const routes: Routes = [
+  {path: 'actu', component: ActuComponent},
+  {path: 'aboutUs', component: AboutUsComponent},
   {path: 'cotisationAdd/:id', component: CotisationAddComponent},
   {path: 'membreDetails/:id', component: MembreDetailsComponent},
   {path: 'cotisationByMbre/:id', component: CotisationByMembreComponent},
-  {path: 'cotisations', component: CotisationComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'theMembers', component: TheMembersComponent},
   {path: 'listMembres', component: ListMembresComponent},
   {path: 'editMembre/:id', component: MembreEditComponent},

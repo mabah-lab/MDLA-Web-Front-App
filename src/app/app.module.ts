@@ -16,6 +16,9 @@ import { CotisationByMembreComponent } from './components/cotisation-by-membre/c
 import { MembreDetailsComponent } from './components/membre-details/membre-details.component';
 import { CotisationAddComponent } from './components/cotisation-add/cotisation-add.component';
 import { FooterBarComponent } from './components/footer-bar/footer-bar.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ActuComponent } from './components/actu/actu.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { FooterBarComponent } from './components/footer-bar/footer-bar.component
     CotisationByMembreComponent,
     MembreDetailsComponent,
     CotisationAddComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    HomeComponent,
+    AboutUsComponent,
+    ActuComponent
   ],
   imports: [
     BrowserModule,
