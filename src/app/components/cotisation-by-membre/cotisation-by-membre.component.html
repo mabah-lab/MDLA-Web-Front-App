@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar navbar-nav">
+    <li>
+      <button class="btn btn-outline-info ml-2" >All</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-info ml-2">Plus ancien</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-info ml-2" >Par Annee</button>
+    </li>
+
+    <li>
+      <button class="btn btn-outline-info ml-2" (click)="onCotisationAdd(membreId)">Nouveau Paiement</button>
+    </li>
+  </ul>
+  <!--<ul class="navbar navbar-nav ml-auto">
+    <li>
+      <form #f="ngForm" (ngSubmit)="onSearchCotisation(f.value)" class="form-inline">
+        <div class="form-group">
+          <input type="text" class="form-control" ngModel name="keyword">
+          <button class="btn btn-info ml-1">
+            <span class="fa fa-search"></span>
+          </button>
+        </div>
+      </form>
+    </li>
+  </ul>-->
+
+</nav>
+
+<ng-container *ngIf="(cotisationsByMbre$ | async) as result" [ngSwitch]="result.dataState">
+  <ng-container *ngSwitchCase="DataStateEnum.LOADING">
+    Loading....
+  </ng-container>
+  <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+    {{result.errorMessage}}
+  </ng-container>
+  <ng-container *ngSwitchCase="DataStateEnum.LOADED">
+    <table class="table table-hover table-responsive-md w-auto align-self-center">
+      <thead class="thead-light">
+      <tr>
+        <th>ID</th><th>Annee</th><th>Mois</th><th>Montant</th><th>Status</th><th>Membre</th><th>Paiement</th><th></th><th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of result.data._embedded.cotisations">
+        <td>{{c.id}}</td>
+        <td>{{c.annee}}</td>
+        <td>{{c.mois}}</td>
+        <td>{{c.montant | currency: 'EUR' }}</td>
+        <td>{{c.statut}}</td>
+        <td>{{c.membre_id}}</td>
+        <td>{{c.paiementId}}</td>
+        <td>
+          <button (click)="onEditCotisation(c)" class="btn btn-info ">
+            <span class="fa fa-edit"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)="onDeleteCotisation(c)" class="btn btn-danger ">
+            <span class="fa fa-trash-o"></span>
+          </button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <!--<ul *ngIf="pages" class="nav nav-pills">
+    <li *ngFor="let p of pages; let i=index" class="nav-item">
+      <a [ngClass]="i==currentPage?'nav-link active':'nav-link'" (click)="onPageMembre(i)"
+         class="cliquable">{{i}}</a>
+    </li>
+  </ul>-->
+  <div class="container">
+    <ngb-pagination [(page)]="thePageNumber"
+                    [pageSize]="thePageSize"
+                    [collectionSize]="theTotalElements"
+                    [maxSize]="5"
+                    [boundaryLinks]="true"
+                    (pageChange)="onGetCotisationsByMbre()">
+
+    </ngb-pagination>
+
+  </div>
+</ng-container>
+

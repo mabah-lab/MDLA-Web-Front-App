@@ -1,0 +1,56 @@
+<div class="container" *ngIf="membreFormGrp">
+  <form [formGroup]="membreFormGrp">
+    <div class="form-group">
+      <label >Nom</label>
+      <input type="text" class="form-control" formControlName="nom"
+             [ngClass]="{'is-invalid':submitted && membreFormGrp.controls.nom.errors}">
+    </div>
+    <div *ngIf="submitted && membreFormGrp.controls.nom.errors" class="invalid-feedback">
+      <div *ngIf="membreFormGrp.controls.nom.errors.required">Le nom est Obligatoire</div>
+    </div>
+    <div class="form-group">
+      <label >Prenom</label>
+      <input type="text" class="form-control" formControlName="prenom">
+    </div>
+    <div class="form-group">
+      <label >N° Membre</label>
+      <input type="text" class="form-control" formControlName="numMbre"
+             [ngClass]="{'is-invalid':submitted && membreFormGrp.controls.numMbre.errors}">
+    </div>
+    <div *ngIf="submitted && membreFormGrp.controls.numMbre.errors" class="invalid-feedback">
+      <div *ngIf="membreFormGrp.controls.numMbre.errors.required">Le N° de membre est Obligatoire</div>
+    </div>
+    <div class="form-group">
+      <label >Date de Naissance</label>
+      <input type="text" class="form-control" formControlName="dateNais"
+        [ngClass]="{'is-invalid': submitted && membreFormGrp.controls.dateNais.errors}">
+    </div>
+    <div *ngIf="submitted && membreFormGrp.controls.dateNais.errors" class="invalid-feedback">
+      <div *ngIf="membreFormGrp.controls.dateNais.errors.required">La date de naisance est Obligatoire</div>
+    </div>
+    <div class="form-group">
+      <label >Télephone</label>
+      <input type="text" class="form-control" formControlName="telephone">
+    </div>
+    <div class="form-group">
+      <label >Adresse</label>
+      <input type="text" class="form-control" formControlName="adresse">
+    </div>
+    <div class="form-group">
+      <label  class="form-">Civilité</label>
+
+      <div class="custom-control custom-radio">
+        <input id="homme" type="radio" class="custom-control-input" value="Homme" name="sexe" formControlName="sexe">
+        <label class="custom-control-label" for="homme">Homme</label>
+      </div>
+
+      <div class="custom-control custom-radio">
+        <input id="femme" type="radio" class="custom-control-input" value="Femme" name="sexe" formControlName="sexe">
+        <label class="custom-control-label" for="femme">Femme</label>
+      </div>
+
+    </div>
+    <button class="btn btn-success" (click)="onAddMembre()">Save</button>
+  </form>
+</div>
+

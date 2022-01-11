@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-2">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">
+    <img src="assets/images/logoDara.PNG" width="40" height="30" alt="logo"/>
+    ASBL MDLA
+  </a>
+  <!--swing button-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div id="navbarContent" class="collapse navbar-collapse">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">Nouveau</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" >Rechercher</a>
+      </li>
+      <li >
+        <a class="nav-link" routerLink="/theMembers" >Membres</a>
+      </li>
+      <li >
+        <a class="nav-link" routerLink="/cotisations" >Cotisations</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" >
+          nomuser
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Profil</a>
+          <a class="dropdown-item" href="#">Se connecter</a>
+          <a class="dropdown-item" >Déconnexion</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+

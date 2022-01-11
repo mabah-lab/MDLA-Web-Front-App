@@ -1,0 +1,117 @@
+<div class="container">
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar navbar-nav">
+    <li>
+      <button class="btn btn-outline-info ml-2" (click)="onGetMembresNg()">All</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-info ml-2">Active</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-info ml-2" (click)="onGetMembresMenNg()">Homme</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-info ml-2" (click)="onGetMembresWomenNg()">Femme</button>
+    </li>
+    <li>
+      <button class="btn btn-outline-info ml-2" routerLink="/addMembre">New</button>
+    </li>
+  </ul>
+  <ul class="navbar navbar-nav ml-auto">
+    <li>
+      <form #f="ngForm" (ngSubmit)="onSearchMembresNg(f.value)" class="form-inline">
+        <div class="form-group">
+          <input type="text" class="form-control" ngModel name="keyword">
+          <button class="btn btn-info ml-1">
+            <span class="fa fa-search"></span>
+          </button>
+        </div>
+      </form>
+    </li>
+  </ul>
+
+</nav>
+
+<ng-container *ngIf="(membres$ | async) as result" [ngSwitch]="result.dataState">
+  <ng-container *ngSwitchCase="DataStateEnum.LOADING">
+    Loading....
+  </ng-container>
+  <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+    {{result.errorMessage}}
+  </ng-container>
+  <ng-container *ngSwitchCase="DataStateEnum.LOADED">
+    <table class="table table-hover table-responsive-md w-auto align-self-center">
+      <thead class="thead-light">
+      <tr>
+        <th>Nom</th><th>Prenom</th><th>N° Membre</th><th>Date de Naissance</th><th>Télephone</th><th>Adresse</th><th>Civilité</th><th></th><th></th><th></th><th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let m of result.data._embedded.membres">
+<!--        <td>{{m.id}}</td>-->
+        <td>{{m.nom}}</td>
+        <td>{{m.prenom}}</td>
+        <td>{{m.numMbre}}</td>
+        <td>{{m.dateNais |date:'dd/MM/yyyy'}}</td>
+        <td>{{m.telephone}}</td>
+        <td>{{m.adresse}}</td>
+        <td>{{m.sexe}}</td>
+       <!-- <td>
+          <img height="50" width="75" src="{{this.membreService.host+'/photoMembre/'+m.id}}" alt="photo">
+          <p (click)="onEditPhoto(m)">
+            <button>
+              <span class="fa fa-refresh"></span>
+            </button>
+          </p>
+          <p *ngIf="editPhoto && currentMembre==m">
+            <input type="file" (change)="onSelectedFile($event)">
+            <button class="btn btn-info" (click)="onUploadPhoto()">Upload</button>
+            {{progress}}
+          </p>
+        </td>-->
+        <td>
+          <button (click)="onMembreDetails(m)" class="btn btn-info ">
+            <span class="fa fa-info-circle"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)="onEditMembre(m)" class="btn btn-info ">
+            <span class="fa fa-edit"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)="onDeleteMembre(m)" class="btn btn-danger ">
+            <span class="fa fa-trash-o"></span>
+          </button>
+        </td>
+        <td>
+          <button (click)="onCotisationByMembre(m)" class="btn btn-info ">
+            <span class="fa fa-money"></span>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <!--<ul *ngIf="pages" class="nav nav-pills">
+    <li *ngFor="let p of pages; let i=index" class="nav-item">
+      <a [ngClass]="i==currentPage?'nav-link active':'nav-link'" (click)="onPageMembre(i)"
+         class="cliquable">{{i}}</a>
+    </li>
+  </ul>-->
+  <div class="container">
+    <ngb-pagination [(page)]="thePageNumber"
+                    [pageSize]="thePageSize"
+                    [collectionSize]="theTotalElements"
+                    [maxSize]="5"
+                    [boundaryLinks]="true"
+                    (pageChange)="onPageMembreNg()">
+
+    </ngb-pagination>
+
+  </div>
+</ng-container>
+
+</div>
+
